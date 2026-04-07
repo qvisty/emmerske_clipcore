@@ -1,0 +1,88 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Emmerske Efterskole - Din skole med hjertet paa rette sted' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title} | Emmerske Efterskole</title>
+  <link rel="icon" type="image/svg+xml" href={base + 'favicon.svg'} />
+</head>
+<body class="font-sans text-gray-900 bg-white antialiased">
+
+  <!-- Password Gate: visible by default, hidden by JS if already authenticated -->
+  <div id="password-gate" class="fixed inset-0 z-50 flex items-center justify-center bg-white">
+    <div class="max-w-sm w-full mx-4 p-8 bg-white rounded-2xl shadow-xl border border-gray-100">
+      <div class="text-center mb-8">
+        <div class="text-5xl mb-4">&#x1F3EB;</div>
+        <h1 class="text-2xl font-bold text-brand-700 mb-2">Emmerske Efterskole</h1>
+        <p class="text-gray-600 text-lg">Indtast adgangskoden for at se siden</p>
+      </div>
+      <form id="pw-form" class="space-y-4">
+        <input
+          type="password"
+          id="pw-input"
+          placeholder="Adgangskode"
+          class="w-full px-5 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none focus:border-brand-500 transition-colors"
+          autocomplete="current-password"
+        />
+        <p id="pw-error" class="text-red-600 text-base hidden">Forkert adgangskode. Proev igen.</p>
+        <button type="submit" class="w-full py-4 text-lg font-semibold bg-brand-600 hover:bg-brand-700 text-white rounded-xl transition-colors">
+          Adgang
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <Header />
+  <main class="min-h-screen">
+    <slot />
+  </main>
+  <Footer />
+
+  <script>
+    (function() {
+      var SESSION_KEY = 'emmerske_auth';
+      var CORRECT_PW = 'emmerske2026';
+      var gate = document.getElementById('password-gate');
+      var form = document.getElementById('pw-form');
+      var input = document.getElementById('pw-input');
+      var error = document.getElementById('pw-error');
+      if (sessionStorage.getItem(SESSION_KEY)) {
+        gate.style.display = 'none';
+      } else {
+        document.body.style.overflow = 'hidden';
+        setTimeout(function() { if (input) input.focus(); }, 50);
+      }
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          if (input.value === CORRECT_PW) {
+            sessionStorage.setItem(SESSION_KEY, '1');
+            gate.style.display = 'none';
+            document.body.style.overflow = '';
+          } else {
+            error.classList.remove('hidden');
+            input.value = '';
+            input.focus();
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
+<style is:global>
+  html { font-size: 18px; scroll-behavior: smooth; }
+  body { line-height: 1.75; letter-spacing: 0.01em; }
+</style>
