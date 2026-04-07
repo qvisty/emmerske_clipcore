@@ -1,9 +1,98 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 <Layout title="Om os">
-  <div class="max-w-6xl mx-auto px-4 py-16">
-    <h1 class="text-4xl font-bold text-brand-800 mb-4">Om os</h1>
-    <p class="text-xl text-gray-600">Indhold kommer i fase 2.</p>
-  </div>
+
+  <section class="bg-brand-50 py-16 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="text-4xl font-bold text-brand-800 mb-4">Om Emmerske Efterskole</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">Vi er en efterskole med hjertet paa rette sted. Siden 1958 har vi taget imod unge mennesker og givet dem det bedste aar af deres liv.</p>
+    </div>
+  </section>
+
+  <section class="py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-brand-800 text-center mb-12">Vores vaerdier</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-8 bg-white rounded-2xl border-2 border-brand-100">
+          <div class="text-6xl mb-4">&#x1F49A;</div>
+          <h3 class="text-2xl font-bold text-brand-800 mb-3">Faellesskab foerst</h3>
+          <p class="text-gray-600 leading-relaxed">Vi tror paa, at man laerer bedst naar man foeler sig tryg og accepteret som den man er.</p>
+        </div>
+        <div class="text-center p-8 bg-white rounded-2xl border-2 border-brand-100">
+          <div class="text-6xl mb-4">&#x1F4A1;</div>
+          <h3 class="text-2xl font-bold text-brand-800 mb-3">Alle kan laere</h3>
+          <p class="text-gray-600 leading-relaxed">Vi er specialister i at finde den laeringsform der virker for den enkelte. Ordblindhed er ikke en begransning.</p>
+        </div>
+        <div class="text-center p-8 bg-white rounded-2xl border-2 border-brand-100">
+          <div class="text-6xl mb-4">&#x1F3C6;</div>
+          <h3 class="text-2xl font-bold text-brand-800 mb-3">Stolthed og mod</h3>
+          <p class="text-gray-600 leading-relaxed">Vi hjaalper dig med at finde din styrke og turde staa ved, hvem du er.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-50 py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-brand-800 text-center mb-12">Vores historie</h2>
+      <div class="space-y-6">
+        <div class="flex gap-6 items-start">
+          <div class="flex-shrink-0 w-20 h-20 bg-brand-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg">1958</div>
+          <div class="bg-white rounded-2xl p-6 flex-1 border border-brand-100"><h3 class="text-xl font-bold text-brand-800 mb-2">Skolen grundlaegges</h3><p class="text-gray-600">Emmerske Efterskole aabner doereme for foerste gang i Toender.</p></div>
+        </div>
+        <div class="flex gap-6 items-start">
+          <div class="flex-shrink-0 w-20 h-20 bg-brand-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg">1990</div>
+          <div class="bg-white rounded-2xl p-6 flex-1 border border-brand-100"><h3 class="text-xl font-bold text-brand-800 mb-2">Ordblinde-fokus indfoeres</h3><p class="text-gray-600">Vi specialiserer os i at hjaelpe elever med ordblindhed og laesevanskeligheder.</p></div>
+        </div>
+        <div class="flex gap-6 items-start">
+          <div class="flex-shrink-0 w-20 h-20 bg-brand-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg">2010</div>
+          <div class="bg-white rounded-2xl p-6 flex-1 border border-brand-100"><h3 class="text-xl font-bold text-brand-800 mb-2">Nye faellesskaber</h3><p class="text-gray-600">Udvidelse med moderne valgfagsraekke inkl. e-sport og kreative fag.</p></div>
+        </div>
+        <div class="flex gap-6 items-start">
+          <div class="flex-shrink-0 w-20 h-20 bg-brand-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg">2025</div>
+          <div class="bg-white rounded-2xl p-6 flex-1 border border-brand-100"><h3 class="text-xl font-bold text-brand-800 mb-2">Ny hjemmeside og ny fremtid</h3><p class="text-gray-600">Vi fortsaetter med at udvikle os og skabe de bedste betingelser for vores elever.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-brand-800 text-center mb-12">Moeed vores team</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="w-32 h-32 bg-gradient-to-br from-brand-200 to-brand-400 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-3xl font-bold">PL</div>
+          <h3 class="text-lg font-bold text-brand-800">Peter Larsen</h3>
+          <p class="text-brand-600 text-base">Forstander</p>
+          <p class="text-gray-500 text-base mt-1">Foto og bio kommer</p>
+        </div>
+        <div class="text-center">
+          <div class="w-32 h-32 bg-gradient-to-br from-brand-200 to-brand-400 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-3xl font-bold">AH</div>
+          <h3 class="text-lg font-bold text-brand-800">Anne Hansen</h3>
+          <p class="text-brand-600 text-base">Inspektoer</p>
+          <p class="text-gray-500 text-base mt-1">Foto og bio kommer</p>
+        </div>
+        <div class="text-center">
+          <div class="w-32 h-32 bg-gradient-to-br from-brand-200 to-brand-400 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-3xl font-bold">MN</div>
+          <h3 class="text-lg font-bold text-brand-800">Mette Nielsen</h3>
+          <p class="text-brand-600 text-base">Laerer - Dansk</p>
+          <p class="text-gray-500 text-base mt-1">Foto og bio kommer</p>
+        </div>
+        <div class="text-center">
+          <div class="w-32 h-32 bg-gradient-to-br from-brand-200 to-brand-400 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-3xl font-bold">JK</div>
+          <h3 class="text-lg font-bold text-brand-800">Jonas Kristensen</h3>
+          <p class="text-brand-600 text-base">Laerer - Idraet</p>
+          <p class="text-gray-500 text-base mt-1">Foto og bio kommer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-600 py-16 px-4"><div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-3xl font-bold text-white mb-4">Vil du vide mere?</h2>
+    <p class="text-brand-100 text-lg mb-8">Ring til os eller kom paa besog. Vi gloeder os til at hoere fra dig.</p>
+    <a href="/emmerske_clipcore/kontakt" class="inline-block px-10 py-4 bg-white hover:bg-brand-50 text-brand-700 text-xl font-semibold rounded-xl transition-colors">Kontakt os</a>
+  </div></section>
+
 </Layout>

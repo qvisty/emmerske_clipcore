@@ -1,9 +1,55 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 <Layout title="Forside">
-  <div class="max-w-6xl mx-auto px-4 py-16 text-center">
-    <h1 class="text-4xl font-bold text-brand-800 mb-4">Velkommen til Emmerske Efterskole</h1>
-    <p class="text-xl text-gray-600">Indhold kommer i fase 2.</p>
-  </div>
+
+  <section class="bg-gradient-to-b from-brand-50 to-white py-20 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-block bg-brand-100 text-brand-700 text-base font-semibold px-4 py-2 rounded-full mb-6">Efterskole i Toender</div>
+      <h1 class="text-4xl sm:text-5xl font-bold text-brand-800 mb-6 leading-tight">Et sted du hoerer til</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">Emmerske Efterskole er for dig, der vil mere end karakterer. Vi laerer med hele kroppen og fejrer alle former for intelligens.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/emmerske_clipcore/kontakt" class="px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white text-lg font-semibold rounded-xl transition-colors shadow-md">Book en rundvisning</a>
+        <a href="tel:74724433" class="px-8 py-4 bg-white hover:bg-brand-50 text-brand-700 text-lg font-semibold rounded-xl border-2 border-brand-200 transition-colors">Ring til os: 74 72 44 33</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-12">
+    <div class="max-w-5xl mx-auto">
+      <div class="w-full h-72 sm:h-96 bg-gradient-to-br from-brand-200 to-brand-500 rounded-2xl flex items-center justify-center shadow-lg">
+        <div class="text-center text-white"><div class="text-5xl mb-3">&#x1F3EB;</div><p class="text-2xl font-semibold">Emmerske Efterskole</p><p class="text-base opacity-80">Billede udskiftes med rigtigt foto</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-brand-800 text-center mb-4">Hvorfor Emmerske?</h2>
+      <p class="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">Vi ved, at laering ikke kun sker ved et skrivebord. Her faar du plads til at vaere dig.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white border-2 border-brand-100 rounded-2xl p-6 text-center hover:border-brand-300 transition-colors"><div class="text-5xl mb-4">&#x1F91D;</div><h3 class="text-xl font-bold text-brand-800 mb-2">Faellesskab</h3><p class="text-gray-600">Et trygt og inkluderende miljoe, hvor alle hoerer til</p></div>
+        <div class="bg-white border-2 border-brand-100 rounded-2xl p-6 text-center hover:border-brand-300 transition-colors"><div class="text-5xl mb-4">&#x1F4DA;</div><h3 class="text-xl font-bold text-brand-800 mb-2">Ordblinde-fokus</h3><p class="text-gray-600">Laeringsformer der virker for dig</p></div>
+        <div class="bg-white border-2 border-brand-100 rounded-2xl p-6 text-center hover:border-brand-300 transition-colors"><div class="text-5xl mb-4">&#x1F3AE;</div><h3 class="text-xl font-bold text-brand-800 mb-2">Valgfag</h3><p class="text-gray-600">E-sport, musik, outdoor og meget mere</p></div>
+        <div class="bg-white border-2 border-brand-100 rounded-2xl p-6 text-center hover:border-brand-300 transition-colors"><div class="text-5xl mb-4">&#x1F333;</div><h3 class="text-xl font-bold text-brand-800 mb-2">Natur naer</h3><p class="text-gray-600">Smukt ved Toender med friluft</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-50 py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-brand-800 text-center mb-12">Hvad siger vores elever?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-brand-100"><div class="text-4xl mb-4">&#x1F4AC;</div><p class="text-gray-700 text-lg italic mb-6 leading-relaxed">"Emmerske er det eneste sted, hvor jeg foelte at jeg virkelig duede til noget."</p><div class="flex items-center gap-3"><div class="w-12 h-12 bg-brand-200 rounded-full flex items-center justify-center text-brand-700 font-bold text-lg">M</div><div><p class="font-semibold text-brand-800">Marcus, 17 aar</p><p class="text-gray-500 text-base">Elev 2023-2024</p></div></div></div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-brand-100"><div class="text-4xl mb-4">&#x1F4AC;</div><p class="text-gray-700 text-lg italic mb-6 leading-relaxed">"Det bedste aar i mit liv. Jeg fandt venner for livet."</p><div class="flex items-center gap-3"><div class="w-12 h-12 bg-brand-200 rounded-full flex items-center justify-center text-brand-700 font-bold text-lg">S</div><div><p class="font-semibold text-brand-800">Sofie, 16 aar</p><p class="text-gray-500 text-base">Elev 2022-2023</p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 px-4"><div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-3xl font-bold text-brand-800 mb-4">Klar til at finde ud af mere?</h2>
+    <p class="text-lg text-gray-600 mb-8">Kom paa besog og moeed vores elever og laerere.</p>
+    <a href="/emmerske_clipcore/kontakt" class="inline-block px-10 py-4 bg-brand-600 hover:bg-brand-700 text-white text-xl font-semibold rounded-xl transition-colors shadow-md">Book en gratis rundvisning</a>
+  </div></section>
+
 </Layout>
