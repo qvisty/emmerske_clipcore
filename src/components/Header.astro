@@ -1,0 +1,60 @@
+---
+const base = import.meta.env.BASE_URL;
+const navLinks = [
+  { href: base, label: 'Forside' },
+  { href: base + 'om-os', label: 'Om os' },
+  { href: base + 'dagligdagen', label: 'Dagligdagen' },
+  { href: base + 'valgfag', label: 'Valgfag' },
+  { href: base + 'kontakt', label: 'Kontakt' },
+];
+const currentPath = Astro.url.pathname;
+---
+<header class="sticky top-0 z-40 bg-white border-b-2 border-brand-100 shadow-sm">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      <a href={base} class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center text-white text-xl font-bold">E</div>
+        <div class="hidden sm:block">
+          <span class="text-lg font-bold text-brand-800 leading-tight block">Emmerske</span>
+          <span class="text-sm text-brand-600 leading-tight block">Efterskole</span>
+        </div>
+      </a>
+      <ul class="hidden md:flex items-center gap-1">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                'px-4 py-2 rounded-lg text-base font-medium transition-colors',
+                currentPath === link.href ? 'bg-brand-100 text-brand-800' : 'text-gray-700 hover:bg-brand-50 hover:text-brand-700'
+              ]}
+            >{link.label}</a>
+          </li>
+        ))}
+      </ul>
+      <a href={base + 'kontakt'} class="hidden sm:inline-flex items-center px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-base font-semibold rounded-xl transition-colors">
+        Book rundvisning
+      </a>
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100" aria-label="Aaben menu">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden pb-4">
+      <ul class="space-y-1">
+        {navLinks.map(link => (
+          <li><a href={link.href} class="block px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:bg-brand-50">{link.label}</a></li>
+        ))}
+        <li class="pt-2"><a href={base + 'kontakt'} class="block px-4 py-3 bg-brand-600 text-white text-base font-semibold rounded-xl text-center">Book rundvisning</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<script>
+  var btn = document.getElementById('mobile-menu-btn');
+  var menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', function() { menu.classList.toggle('hidden'); });
+  }
+</script>
