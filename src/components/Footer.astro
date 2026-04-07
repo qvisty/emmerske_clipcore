@@ -1,0 +1,41 @@
+---
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+---
+<footer class="bg-brand-900 text-white mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center text-white text-xl font-bold">E</div>
+          <div>
+            <span class="font-bold text-lg block">Emmerske Efterskole</span>
+            <span class="text-brand-300 text-sm block">Din skole, dit faellesskab</span>
+          </div>
+        </div>
+        <p class="text-brand-200 text-base leading-relaxed">En efterskole med fokus paa faellesskab, ordblinde-venlighed og personlig udvikling.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4">Navigation</h3>
+        <ul class="space-y-2 text-base">
+          <li><a href={base} class="text-brand-200 hover:text-white transition-colors">Forside</a></li>
+          <li><a href={base + 'om-os'} class="text-brand-200 hover:text-white transition-colors">Om os</a></li>
+          <li><a href={base + 'dagligdagen'} class="text-brand-200 hover:text-white transition-colors">Dagligdagen</a></li>
+          <li><a href={base + 'valgfag'} class="text-brand-200 hover:text-white transition-colors">Valgfag</a></li>
+          <li><a href={base + 'kontakt'} class="text-brand-200 hover:text-white transition-colors">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4">Kontakt os</h3>
+        <ul class="space-y-3 text-base text-brand-200">
+          <li>Aabenraavej 14, 6270 Toender</li>
+          <li><a href="tel:74724433" class="hover:text-white">7472 4433</a></li>
+          <li><a href="mailto:ee@eeskole.dk" class="hover:text-white">ee@eeskole.dk</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-brand-700 mt-10 pt-6 text-center text-brand-400 text-sm">
+      <p>&copy; {year} Emmerske Efterskole. Alle rettigheder forbeholdes.</p>
+    </div>
+  </div>
+</footer>
