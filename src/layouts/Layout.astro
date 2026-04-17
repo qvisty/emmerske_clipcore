@@ -5,9 +5,16 @@ import Footer from '../components/Footer.astro';
 export interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
-const { title, description = 'Emmerske Efterskole - Din skole med hjertet paa rette sted' } = Astro.props;
+const {
+  title,
+  description = 'Emmerske Efterskole - Din skole med hjertet paa rette sted',
+  ogImage = 'https://qvisty.github.io/emmerske_clipcore/og-image.jpg',
+} = Astro.props;
 const base = import.meta.env.BASE_URL;
+const canonicalURL = new URL(Astro.url.pathname, 'https://qvisty.github.io').href;
+const pageTitle = `${title} | Emmerske Efterskole`;
 ---
 <!DOCTYPE html>
 <html lang="da">
@@ -15,8 +22,22 @@ const base = import.meta.env.BASE_URL;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
-  <title>{title} | Emmerske Efterskole</title>
+  <title>{pageTitle}</title>
+  <link rel="canonical" href={canonicalURL} />
   <link rel="icon" type="image/svg+xml" href={base + 'favicon.svg'} />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:locale" content="da_DK" />
+  <meta property="og:site_name" content="Emmerske Efterskole" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
 </head>
 <body class="font-sans text-gray-900 bg-white antialiased">
 

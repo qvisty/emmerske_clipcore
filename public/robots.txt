@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qvisty.github.io/emmerske_clipcore/sitemap-index.xml
