@@ -58,9 +58,23 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 
-  <section class="bg-brand-50 py-16 px-4">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl font-bold text-brand-800 text-center mb-12">Se hverdagen</h2>
+  <!-- Video: En dag paa Emmerske -->
+  <section class="bg-brand-50 py-16 px-4" aria-labelledby="video-dag-heading">
+    <div class="max-w-4xl mx-auto">
+      <h2 id="video-dag-heading" class="text-3xl font-bold text-brand-800 text-center mb-8">Foelg en dag paa Emmerske</h2>
+      <div class="video-wrapper shadow-xl mb-6">
+        <!-- Erstat src med rigtig video naar den er klar -->
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+          title="En dag paa Emmerske Efterskole - se hverdagen"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p class="text-center text-gray-500 text-base mb-10">Video udskiftes med rigtig hverdagsvideo fra Emmerske</p>
+
+      <!-- Billede-grid forbliver som visuelt supplement -->
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div class="h-48 bg-gradient-to-br from-brand-200 to-brand-400 rounded-2xl flex items-center justify-center text-white text-center p-4">
           <div><div class="text-4xl mb-2">&#x1F3C3;</div><p class="font-semibold">Morgenloeb</p></div>

@@ -15,11 +15,21 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 
-  <section class="px-4 py-12">
-    <div class="max-w-5xl mx-auto">
-      <div class="w-full h-72 sm:h-96 bg-gradient-to-br from-brand-200 to-brand-500 rounded-2xl flex items-center justify-center shadow-lg">
-        <div class="text-center text-white"><div class="text-5xl mb-3">&#x1F3EB;</div><p class="text-2xl font-semibold">Emmerske Efterskole</p><p class="text-base opacity-80">Billede udskiftes med rigtigt foto</p></div>
+  <!-- Video: Bliv klogere paa skolen uden at laese meget -->
+  <section class="px-4 py-12" aria-labelledby="video-heading">
+    <div class="max-w-4xl mx-auto">
+      <h2 id="video-heading" class="text-2xl font-bold text-brand-800 text-center mb-6">Se Emmerske med dine egne oejne</h2>
+      <div class="video-wrapper shadow-xl">
+        <!-- Erstat src med rigtig YouTube-video naar den er klar -->
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+          title="Velkomstvideo fra Emmerske Efterskole"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
       </div>
+      <p class="text-center text-gray-500 mt-3 text-base">Video udskiftes med Emmerskes egen velkomstvideo</p>
     </div>
   </section>
 

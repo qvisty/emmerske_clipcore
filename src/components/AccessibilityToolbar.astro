@@ -1,0 +1,211 @@
+<!-- Tilgaengeligheds-toolbar: fast under header, synlig paa alle sider -->
+<div id="a11y-bar" role="toolbar" aria-label="Tilgaengelighed" class="bg-brand-800 text-white text-sm px-4 py-2 flex flex-wrap items-center gap-2 sm:gap-3 justify-center sm:justify-start">
+  <span class="text-brand-300 font-semibold text-xs uppercase tracking-wide hidden sm:inline">Hjaelpevaerktoejer:</span>
+
+  <!-- Tekst-til-tale -->
+  <button id="btn-listen"
+    aria-label="Lyt til sidens indhold"
+    title="Lyt til siden"
+    class="a11y-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-700 hover:bg-brand-600 transition-colors focus:outline-none focus:ring-2 focus:ring-white">
+    <span aria-hidden="true">&#x1F50A;</span>
+    <span>Lyt</span>
+  </button>
+  <button id="btn-stop"
+    aria-label="Stop oplæsning"
+    title="Stop"
+    hidden
+    class="a11y-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-700 hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-white">
+    <span aria-hidden="true">&#x23F9;</span>
+    <span>Stop</span>
+  </button>
+
+  <span class="hidden sm:inline text-brand-600" aria-hidden="true">|</span>
+
+  <!-- Skriftstoerrelse -->
+  <div class="flex items-center gap-1" role="group" aria-label="Skriftstoerrelse">
+    <button id="btn-bigger"
+      aria-label="Goer skriften stoerre"
+      title="Stoerre skrift"
+      class="a11y-btn w-9 h-8 rounded-lg bg-brand-700 hover:bg-brand-600 transition-colors focus:outline-none focus:ring-2 focus:ring-white font-bold text-base">
+      A+
+    </button>
+    <button id="btn-smaller"
+      aria-label="Goer skriften mindre"
+      title="Mindre skrift"
+      class="a11y-btn w-9 h-8 rounded-lg bg-brand-700 hover:bg-brand-600 transition-colors focus:outline-none focus:ring-2 focus:ring-white font-bold text-xs">
+      A-
+    </button>
+  </div>
+
+  <span class="hidden sm:inline text-brand-600" aria-hidden="true">|</span>
+
+  <!-- Ordblinde-venlig font -->
+  <button id="btn-dyslexic"
+    aria-label="Slaael ordblinde-venlig skrift til/fra"
+    aria-pressed="false"
+    title="Ordblinde-venlig skrift"
+    class="a11y-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-700 hover:bg-brand-600 transition-colors focus:outline-none focus:ring-2 focus:ring-white">
+    <span aria-hidden="true">&#x1F4D6;</span>
+    <span class="hidden sm:inline">Ordblinde-skrift</span>
+    <span class="sm:hidden">Aa</span>
+  </button>
+
+  <!-- Hoej kontrast -->
+  <button id="btn-contrast"
+    aria-label="Slaael hoej kontrast til/fra"
+    aria-pressed="false"
+    title="Hoej kontrast"
+    class="a11y-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-700 hover:bg-brand-600 transition-colors focus:outline-none focus:ring-2 focus:ring-white">
+    <span aria-hidden="true">&#x25D1;</span>
+    <span class="hidden sm:inline">Kontrast</span>
+  </button>
+</div>
+
+<script>
+(function() {
+  var STORAGE_KEY = 'emmerske_a11y';
+
+  // Load saved preferences
+  var prefs = {};
+  try { prefs = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) {}
+
+  var fontSizeStep = prefs.fontSizeStep || 0; // -2 to +4 steps
+  var dyslexicOn = !!prefs.dyslexic;
+  var contrastOn = !!prefs.contrast;
+
+  // Apply saved state on load
+  applyFontSize(fontSizeStep);
+  if (dyslexicOn) document.documentElement.classList.add('dyslexic-mode');
+  if (contrastOn) document.documentElement.classList.add('high-contrast');
+
+  function save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        fontSizeStep: fontSizeStep,
+        dyslexic: dyslexicOn,
+        contrast: contrastOn
+      }));
+    } catch(e) {}
+  }
+
+  function applyFontSize(step) {
+    // Base 18px, each step = 2px, range -2 to +6 steps
+    var base = 18 + (step * 2);
+    document.documentElement.style.fontSize = base + 'px';
+  }
+
+  function updateButtonStates() {
+    var btnD = document.getElementById('btn-dyslexic');
+    var btnC = document.getElementById('btn-contrast');
+    if (btnD) {
+      btnD.setAttribute('aria-pressed', dyslexicOn ? 'true' : 'false');
+      btnD.classList.toggle('ring-2', dyslexicOn);
+      btnD.classList.toggle('ring-white', dyslexicOn);
+      btnD.classList.toggle('bg-brand-500', dyslexicOn);
+    }
+    if (btnC) {
+      btnC.setAttribute('aria-pressed', contrastOn ? 'true' : 'false');
+      btnC.classList.toggle('ring-2', contrastOn);
+      btnC.classList.toggle('ring-white', contrastOn);
+      btnC.classList.toggle('bg-brand-500', contrastOn);
+    }
+  }
+
+  updateButtonStates();
+
+  // Tekst-til-tale
+  var synth = window.speechSynthesis;
+  var btnListen = document.getElementById('btn-listen');
+  var btnStop = document.getElementById('btn-stop');
+
+  function getPageText() {
+    var main = document.querySelector('main');
+    if (!main) return document.body.innerText;
+    // Exclude nav, footer, toolbar, buttons
+    var clone = main.cloneNode(true);
+    var exclude = clone.querySelectorAll('button, [role="toolbar"], footer, nav, form, script');
+    exclude.forEach(function(el) { el.remove(); });
+    return clone.innerText.replace(/\s+/g, ' ').trim().substring(0, 5000);
+  }
+
+  if (btnListen) {
+    btnListen.addEventListener('click', function() {
+      if (synth && synth.speaking) { synth.cancel(); }
+      var text = getPageText();
+      if (!text) return;
+      var utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'da-DK';
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+
+      // Try to find Danish voice
+      var voices = synth.getVoices();
+      var daVoice = voices.find(function(v) { return v.lang.startsWith('da'); });
+      if (daVoice) utterance.voice = daVoice;
+
+      utterance.onstart = function() {
+        btnListen.hidden = true;
+        if (btnStop) btnStop.hidden = false;
+      };
+      utterance.onend = utterance.onerror = function() {
+        btnListen.hidden = false;
+        if (btnStop) btnStop.hidden = true;
+      };
+      synth.speak(utterance);
+    });
+  }
+
+  if (btnStop) {
+    btnStop.addEventListener('click', function() {
+      if (synth) synth.cancel();
+      btnListen.hidden = false;
+      btnStop.hidden = true;
+    });
+  }
+
+  // Skriftstoerrelse
+  var btnBigger = document.getElementById('btn-bigger');
+  var btnSmaller = document.getElementById('btn-smaller');
+
+  if (btnBigger) {
+    btnBigger.addEventListener('click', function() {
+      if (fontSizeStep < 6) {
+        fontSizeStep++;
+        applyFontSize(fontSizeStep);
+        save();
+      }
+    });
+  }
+  if (btnSmaller) {
+    btnSmaller.addEventListener('click', function() {
+      if (fontSizeStep > -2) {
+        fontSizeStep--;
+        applyFontSize(fontSizeStep);
+        save();
+      }
+    });
+  }
+
+  // Ordblinde-venlig skrift
+  var btnDyslexic = document.getElementById('btn-dyslexic');
+  if (btnDyslexic) {
+    btnDyslexic.addEventListener('click', function() {
+      dyslexicOn = !dyslexicOn;
+      document.documentElement.classList.toggle('dyslexic-mode', dyslexicOn);
+      updateButtonStates();
+      save();
+    });
+  }
+
+  // Hoej kontrast
+  var btnContrast = document.getElementById('btn-contrast');
+  if (btnContrast) {
+    btnContrast.addEventListener('click', function() {
+      contrastOn = !contrastOn;
+      document.documentElement.classList.toggle('high-contrast', contrastOn);
+      updateButtonStates();
+      save();
+    });
+  }
+})();
+</script>
